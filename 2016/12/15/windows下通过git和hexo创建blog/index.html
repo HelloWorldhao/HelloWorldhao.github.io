@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
-  <meta name="author" content="John Doe">
+  <meta name="author" content="zhuzehao">
   <!-- Open Graph Data -->
   <meta property="og:title" content="windows下通过git和hexo创建blog"/>
   <meta property="og:description" content="" />
@@ -27,7 +27,7 @@
   <link rel="stylesheet" href="/css/bootstrap.min.css">
   <!-- Custom CSS -->
   
-  <link rel="stylesheet" href="/css/style.light.css">
+  <link rel="stylesheet" href="/css/style.dark.css">
 
   <!-- Google Analytics -->
   
@@ -66,7 +66,7 @@
               </li>
             
               <li>
-                <a href="https://github.com/levblanc">
+                <a href="https://github.com/HelloWorldhao">
                   
                   Github
                   
@@ -74,7 +74,7 @@
               </li>
             
               <li>
-                <a href="mailto:levblanc@163.com">
+                <a href="mailto:825622990@qq.com">
                   
                   Email
                   
@@ -96,20 +96,63 @@
         <div class="post-info text-muted">
           
             <!-- Author -->
-            <span class="author info">By John Doe</span>
+            <span class="author info">By zhuzehao</span>
           
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2016-12-15</span>
-            <span class="time">09:23:33</span>
+            <span class="time">11:44:12</span>
           </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/Hexo/">Hexo</a>
+</span>
           
         </div>
         <!-- Tags -->
         
         <!-- Post Main Content -->
         <div class="post-content">
-          
+          <p>你听说 有些人不爱说话就变成了哑巴</p>
+<p>你担心 因为你生来就是个沉默的人</p>
+<p>你不爱 跟着他们的步伐总是越走越快</p>
+<p>你喜欢 你的心和这世界一样的孤单<br>　　　　　　　　　　　　　　　　　                                                 　　　　　　　　　　　　　　　　　　　　　　　–花粥<br><a id="more"></a></p>
+<h3 id="Node-js安装"><a href="#Node-js安装" class="headerlink" title="Node.js安装"></a>Node.js安装</h3><p>下载并安装<a href="https://nodejs.org/en/" target="_blank" rel="external">Node.js</a>　(这里没啥好讲的，默认安装就行了，安装路径可以自己设置下)</p>
+<h3 id="GIT安装"><a href="#GIT安装" class="headerlink" title="GIT安装"></a>GIT安装</h3><p>过两天会发一篇关于如何安装GIT的文章，并讲解一些GIT语句和基本操作，这里就先不叙述了。QAQ~<a href="http://baidu.com" target="_blank" rel="external">GIT安装与基本命令</a></p>
+<h3 id="hexo"><a href="#hexo" class="headerlink" title="hexo"></a>hexo</h3><p>鼠标右键任何地方，选择Git Bash，并使用一下命令安装：</p>
+<pre><code>$ npm install hexo-cli -g
+</code></pre><p>如果之后在使用的过程中，遇到以下错误</p>
+<pre><code>ERROR Deployer not found :github
+</code></pre><p>则运行一下命令</p>
+<pre><code>$ npm install hexo-deployer-git --save
+$ hexo g
+$ hexo d
+</code></pre><p>然后创建存放博客Blog的文件夹，随你创建(比如我是安装在<strong>D:\hexo</strong>),进入<strong>D:\hexo</strong>文件夹，右击鼠标，选择Git Bash,执行以下命令，Hexo会自动在该文件夹下下载搭建网站所需的所有文件。</p>
+<pre><code>$ hexo init
+</code></pre><p>安装依赖包</p>
+<pre><code>$ npm install
+</code></pre><p>这是hexo基本安装完成了，下面看看效果，执行以下命令：</p>
+<pre><code>$ hexo g
+$ hexo d
+</code></pre><p>用浏览器访问localhost：4000或127.0.0.1:4000，这是就可以看到一个漂亮的博客blog了。有时4000端口可能会被占用，这是调用一下命令：</p>
+<pre><code>$ hexo server -p 5000
+</code></pre><p>5000只是一个例子，自己也可以随便调用6000等等其他端口。当然此时搭建的博客是本地的，想要将它放置到github上，这时就需要下面的步骤了。</p>
+<h3 id="注册Github账号"><a href="#注册Github账号" class="headerlink" title="注册Github账号"></a>注册Github账号</h3><p>作为一个程序员，Github账号总要有一个吧。<a href="https://github.com/join?source=header-home" target="_blank" rel="external">Github</a></p>
+<h3 id="创建repository"><a href="#创建repository" class="headerlink" title="创建repository"></a>创建repository</h3><p>repository相当于一个仓库，用来存放自己的代码文件。一个项目对应一个repository,点击<strong>+</strong>并选择New repository,<br><img src="/img/repository_1.png" alt="Alt text"><br>进行如下图类似的填写,Repository name填写为<font color="#ec1946" ;="">yourname.github.io</font>(yourname填写为github的username(没试过其他的行不行，自己可以试下)),点击Create repository，创建repository成功。<br><img src="/img/repository_2.png" alt="Alt text"></p>
+<h3 id="部署hexo文件到github-需要配置ssh"><a href="#部署hexo文件到github-需要配置ssh" class="headerlink" title="部署hexo文件到github(需要配置ssh)"></a>部署hexo文件到github(需要配置ssh)</h3><p>打开<strong>D:\hexo</strong>，并打开_config.yml,翻到最后，如下图：<br><img src="/img/config1.png" alt="Alt text"><br>将之配置为(这种配置是不需要<strong>http://</strong>)：<br><img src="/img/config2.png" alt="Alt text"><br>配置完_config.yml后，需要配置Git的SSH key，步骤如下：<br>鼠标右击任意位置，选择Git Bash，</p>
+<pre><code>$ ssh-keygen -t rsa -C &quot;your_email@youremail.com&quot;
+</code></pre><p>后面的your_email@youremail.com改为自己的邮箱,之后会要求确认路径和输入密码，选择默认一路回车就行。最后如果SSH成功生成，就会在<strong>C:\Users\Administrator</strong>下生成<strong>.ssh</strong>文件夹,进入文件夹，可以看到有三个文件id_rsa,id_rsa.pub,known_hosts。打开id_rsa.pub,全选,复制,打开github,进入Settings,可以看到Profile下有一个SSH and GPG keys，点击进入，点击New SSH key，title可以任意填写，将刚刚copy的粘贴到Key,点击Add SSH key，创建成功。验证SSH key创建成功,在Git Bash下输入：</p>
+<pre><code>$ ssh -T git@github.com
+</code></pre><p>如果是第一次会提示是否continue,输入yes可以看到：You’ve successfully authenticated,but GitHub does not provide shell access,这就表示已经成功连接上Github了。<br>上传文件之前需要设置username和email，这是github用来记录上传者的信息。</p>
+<pre><code>$ git config --global user.name &quot;your name&quot;
+$ git config --global user.email &quot;your_email@youremail.com&quot;
+</code></pre><p>最后就是上传文件了。</p>
+<pre><code>$ hexo g
+$ hexo d
+</code></pre><p>在浏览器中输入yourname.github.io,就可以看到部署上去的博客了。(yourname改为自己填写的username)</p>
+
         </div>
       </div>
     </div>
