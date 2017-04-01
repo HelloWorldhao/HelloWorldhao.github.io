@@ -101,7 +101,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2017-03-31</span>
-            <span class="time">17:16:39</span>
+            <span class="time">10:01:21</span>
           </span>
           
           <!--  Categories  -->
@@ -144,7 +144,45 @@
         &apos;class&apos; =&gt; &apos;api\modules\v1\Module&apos;,
     ],
 ],
-</code></pre>
+</code></pre><p>修改控制器,</p>
+<pre><code>&lt;?php
+
+namespace api\modules\v1\controllers;
+
+use yii\rest\ActiveController;
+
+class UserController extends ActiveController
+{
+    public $modelClass = &apos;api\models\User&apos;;
+}
+</code></pre><p>让UserController继承ActiveController,因为ActiveController比Controller多了Active Record方法,使用起来更加方便.<br>配置Url规则</p>
+<pre><code>&apos;rules&apos; =&gt; [
+    [
+        &apos;class&apos; =&gt; &apos;yii\rest\UrlRule&apos;,
+        &apos;controller&apos; =&gt; [&apos;v1/user&apos;]
+    ],
+]
+</code></pre><p>此时配置完成后resful就基本完成了.<br>可通过Chrome的postman(这个可自行百度下载)进行模拟请求.<br>studyyii.com/zhuzehao/api/web/v1/users访问,(其中studyyii.com是自己配置的虚拟域名,不懂百度= =!)<br><img src="/img/postman.jpg" alt="Alt text"><br>可以看到postman返回的数据了,此时我们已经完成了创建访问用户数据的RESTful风格的Api,该Api包括：<br><img src="/img/api5.jpg" alt="Alt text"><br>这时的api是可以直接访问，不需要授权验证的.</p>
+<h3 id="授权验证"><a href="#授权验证" class="headerlink" title="授权验证"></a>授权验证</h3><p>我们这里只讲述access_token验证方式<br>在User表中建立access_token字段,并赋值<br>UserController控制器中配置</p>
+<pre><code>public function behaviors() {
+$behaviors = parent::behaviors();
+$behaviors[&apos;authenticator&apos;] = [
+    &apos;class&apos; =&gt; CompositeAuth::className(),
+    &apos;authMethods&apos; =&gt; [QueryParamAuth::className(),],
+    &apos;only&apos;=&gt;[&apos;search&apos;], //设置search方法需要access_token验证,其它不需要
+];
+return $behaviors;
+}
+</code></pre><p>自定义方法        </p>
+<pre><code>/*自定义方法Search*/
+public function actionSearch()
+{
+    return [
+        &apos;data&apos;=&gt;&apos;12&apos;,
+    ];
+}
+</code></pre><p>为了能访问自定义的function,我们需要在main.php中配置<br><img src="/img/api7.jpg" alt="Alt text"><br>每自定义一个function后,都需要在rules中配置访问路径(关于为什么是users，看文档去~)<br>这时访问search方法,<br><img src="/img/api8.jpg" alt="Alt text"><br>需要注意的是access_token在路径中访问时是access-token(是横杠不是下划线)<br>如果不加access_token时,结果会是<br><img src="/img/api9.jpg" alt="Alt text"><br>请求无效.<br>至此，yii2 restful基本就完成了.一些基础的自己可以去查文档了,在此记录下自己摸索过程中碰到的问题.</p>
+
         </div>
       </div>
     </div>
