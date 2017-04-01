@@ -101,7 +101,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2017-03-31</span>
-            <span class="time">10:01:21</span>
+            <span class="time">10:10:35</span>
           </span>
           
           <!--  Categories  -->
@@ -125,7 +125,7 @@
         <div class="post-content">
           <p>妈妈 我爱你</p>
 <p>妈妈 我居然爱上了她<br>像歌唱一样爱上了她<br>妈妈 当你又回首一切<br>这个世界会好吗<br>　　　　　　　　　　　　　　　　　                                                 　　　　　　　　　　　　　　　　　　　                        –李志<br><a id="more"></a></p>
-<h3 id="实现Restful风格的api"><a href="#实现Restful风格的api" class="headerlink" title="实现Restful风格的api"></a>实现Restful风格的api</h3><p>在backend和frontend的同级目录下新建一个文件夹，命名为api(文件夹内存放着从backend目录拷贝过去的文件，然后留下一些必要的文件即可);<br>创建完成的文件下目录为<br><img src="/img/api.jpg" alt="Alt text"><br>在common\config\bootstrap.php文件中添加新的别名</p>
+<h3 id="实现Restful风格的api"><a href="#实现Restful风格的api" class="headerlink" title="实现Restful风格的api"></a><font color="#00ffff">实现Restful风格的api</font></h3><p>在backend和frontend的同级目录下新建一个文件夹，命名为api(文件夹内存放着从backend目录拷贝过去的文件，然后留下一些必要的文件即可);<br>创建完成的文件下目录为<br><img src="/img/api.jpg" alt="Alt text"><br>在common\config\bootstrap.php文件中添加新的别名</p>
 <pre><code>Yii::setAlias(&apos;@api&apos;, dirname(dirname(__DIR__)) . &apos;/api&apos;);
 </code></pre><p>接着配置api/config/main.php中的urlManager,</p>
 <pre><code>&apos;components&apos; =&gt; [
@@ -137,7 +137,7 @@
     ],
 ],
 </code></pre><p>在web目录下添加.htaccess文件.</p>
-<h3 id="模拟数据-测试api"><a href="#模拟数据-测试api" class="headerlink" title="模拟数据,测试api"></a>模拟数据,测试api</h3><p>使用yii2的gii,调用Module Generator,Controller Generator,Model Generator</p>
+<h3 id="模拟数据-测试api"><a href="#模拟数据-测试api" class="headerlink" title="模拟数据,测试api"></a><font color="#00ffff">模拟数据,测试api</font></h3><p>使用yii2的gii,调用Module Generator,Controller Generator,Model Generator</p>
 <p><center><br>    <img src="/img/api2.jpg" style="width:50%"><br>    Module Generator<br>    <img src="/img/api3.jpg" style="width:50%"><br>    Controller Generator<br>    <img src="/img/api4.jpg" style="width:50%"><br>    Model Generator<br></center><br>此时目录结构下面多了几个文件夹.<br>在main.php配置文件中添加代码</p>
 <pre><code> &apos;modules&apos; =&gt; [
     &apos;v1&apos; =&gt; [
@@ -163,7 +163,7 @@ class UserController extends ActiveController
     ],
 ]
 </code></pre><p>此时配置完成后resful就基本完成了.<br>可通过Chrome的postman(这个可自行百度下载)进行模拟请求.<br>studyyii.com/zhuzehao/api/web/v1/users访问,(其中studyyii.com是自己配置的虚拟域名,不懂百度= =!)<br><img src="/img/postman.jpg" alt="Alt text"><br>可以看到postman返回的数据了,此时我们已经完成了创建访问用户数据的RESTful风格的Api,该Api包括：<br><img src="/img/api5.jpg" alt="Alt text"><br>这时的api是可以直接访问，不需要授权验证的.</p>
-<h3 id="授权验证"><a href="#授权验证" class="headerlink" title="授权验证"></a>授权验证</h3><p>我们这里只讲述access_token验证方式<br>在User表中建立access_token字段,并赋值<br>UserController控制器中配置</p>
+<h3 id="授权验证"><a href="#授权验证" class="headerlink" title="授权验证"></a><font color="#00ffff">授权验证</font></h3><p>我们这里只讲述access_token验证方式<br>在User表中建立access_token字段,并赋值<br>UserController控制器中配置</p>
 <pre><code>public function behaviors() {
 $behaviors = parent::behaviors();
 $behaviors[&apos;authenticator&apos;] = [
